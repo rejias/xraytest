@@ -1,11 +1,13 @@
 #!/bin/bash
 
 parse_test_results() {
+     echo "one"
     local results_file="$1"
     local file_extension="${results_file##*.}"
 
     if [[ $file_extension == "xml" ]]; then
         # Parse XML file
+        echo "two"
         test_cases=()
         while IFS= read -r testcase; do
             name=$(echo "$testcase" | sed -n 's/.*name="\([^"]*\)".*/\1/p')
@@ -28,12 +30,13 @@ parse_test_results() {
 }
 
 push_test_results_to_xray() {
+     echo "three"
     local test_cases="$1"
     local url="https://rejias.atlassian.net/rest/raven/2.0/api/test/TEST-123/step"
     local client_id="684549FA28844AD8B50BCE63606E72C2"
     local client_secret="ccb5b4ee95064829b5728b76c94622c1b92e46dc6ec980d087836e04b5876576"
     local auth=$(printf "%s:%s" "$client_id" "$client_secret" | base64)
-    
+       echo "four"
     local payload=$(cat <<EOF
 {
     "testExecutionKey": "MY-PROJECT-123",
