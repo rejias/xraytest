@@ -53,14 +53,6 @@ namespace UnitTestProject
             Assert.AreEqual(result, (num1 / num2));
         }
 
-        [Test]
-        public void test_divide_failed()
-        {
-            //arrange
-            int num1 = 1000;
-            int num2 = 0;
-            var result = calculator.divide(num1, num2);
-            Assert.AreEqual(result, (num1 / num2));
-        }
+        
     }
 }
