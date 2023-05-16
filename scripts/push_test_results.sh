@@ -29,7 +29,7 @@ parse_test_results() {
 
 push_test_results_to_xray() {
     local test_cases="$1"
-    local url="https://rejias.atlassian.net/"
+    local url="https://rejias.atlassian.net/rest/raven/2.0/api/test/TEST-123/step"
     local client_id="684549FA28844AD8B50BCE63606E72C2"
     local client_secret="ccb5b4ee95064829b5728b76c94622c1b92e46dc6ec980d087836e04b5876576"
     local auth=$(printf "%s:%s" "$client_id" "$client_secret" | base64)
@@ -37,7 +37,6 @@ push_test_results_to_xray() {
     local payload=$(cat <<EOF
 {
     "testExecutionKey": "MY-PROJECT-123",
-    "testEnvironments": ["my-test-environment"],
     "testExecIssueKey": "MY-TEST-EXEC-1",
     "info": {
         "summary": "Test Execution Summary",
