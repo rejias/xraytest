@@ -55,6 +55,6 @@ EOF
 }
 
 # Example usage
-results_file="my_test_results.xml"
+results_file="test-results.xml"
 test_cases=$(parse_test_results "$results_file")
 push_test_results_to_xray "$test_cases"
