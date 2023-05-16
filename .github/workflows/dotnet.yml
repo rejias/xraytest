@@ -9,11 +9,14 @@ on:
     - main
     
 jobs:
+
   build_and_test:
 
     env:
       BUILD_CONFIG: 'Release'
       SOLUTION: 'Solution1/UnitTest.sln'
+
+    permissions: write-all
 
     runs-on: ubuntu-latest
 
