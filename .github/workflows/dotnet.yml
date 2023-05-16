@@ -36,13 +36,19 @@ jobs:
       run: dotnet build $SOLUTION --configuration $BUILD_CONFIG
       
     - name: Test
-      run: dotnet test $SOLUTION --configuration $BUILD_CONFIG --logger "trx;LogFileName=test-results.trx" || true
+      run: dotnet test $SOLUTION --configuration $BUILD_CONFIG --logger "trx;LogFileName=test-results.xml" || true
       
     - name: Test Report
       uses: dorny/test-reporter@v1
       if: always()
       with:
         name: DotNET Tests
-        path: "**/test-results.trx"                            
+        path: "**/test-results.xml"                            
         reporter: dotnet-trx
         fail-on-error: true
+
+    - name: Run tests and push results to Xray
+        run: |
+          # Replace with the appropriate shell script path and arguments
+          bash scripts/push_test_results.sh --results-file Solution1/UnitTestProject/TestResults/test-results.xml
+
