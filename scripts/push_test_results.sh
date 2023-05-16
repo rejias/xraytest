@@ -50,13 +50,15 @@ push_test_results_to_xray() {
 EOF
 )
 
-    local response=$(curl -s -X POST -u "$auth" -H "Content-Type: application/json" -d "$payload" "$url")
+    local response=$(curl -s -X POST -H "Authorization: Basic $auth" -H "Content-Type: application/json" -d "$payload" "$url")
     local status_code=$(echo "$response" | jq -r '.status')
 
     if [[ $status_code != "200" ]]; then
         echo "Failed to push test results to Xray API"
         exit 1
     fi
+
+    
 }
 
 # Example usage
