@@ -48,7 +48,5 @@ jobs:
         fail-on-error: true
 
     - name: Run tests and push results to Xray
-        run: |
-          # Replace with the appropriate shell script path and arguments
-          bash scripts/push_test_results.sh --results-file Solution1/UnitTestProject/TestResults/test-results.xml
-
+      run: bash scripts/push_test_results.sh --results-file **/test-results.xml
+          
